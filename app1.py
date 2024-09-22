@@ -59,7 +59,7 @@ def main():
     st.title("OUR Wordle Game")
 
     # Display instructions
-    st.write("WELCOME MERLYN")
+    st.write("Hello Love")
     st.write("Guess the 4-letter word. The game will tell you:")
     st.write("- Green: Letter is correct and in the right position")
     st.write("- Yellow: Letter is correct but in the wrong position")
@@ -69,15 +69,22 @@ def main():
     if "guesses" not in st.session_state:
         st.session_state.guesses = []
 
-    # Input for guessing
-    guess = st.text_input("Enter your 4-letter guess:", max_chars=4).lower()
+    # Check if the user has made 6 guesses or guessed the correct word
+    game_over = len(st.session_state.guesses) >= 6 or (st.session_state.guesses and st.session_state.guesses[-1] == target_word)
 
-    # Button to submit the guess
-    if st.button("Submit Guess"):
-        if len(guess) == 4 and guess.isalpha():
-            st.session_state.guesses.append(guess)
-        else:
-            st.warning("Shi Shi saiba you guessed wrong")
+    if not game_over:
+        # Input for guessing
+        guess = st.text_input("Enter your 4-letter guess:", max_chars=4).lower()
+
+        # Button to submit the guess
+        if st.button("Submit Guess"):
+            if len(guess) == 4 and guess.isalpha():
+                st.session_state.guesses.append(guess)
+            else:
+                st.warning("Shi Shi saiba you guessed wrong")
+    else:
+        if st.session_state.guesses[-1] != target_word:
+            st.error(f"Sorry, you've used all your guesses. The correct word was {target_word.upper()}.")
 
     # Display the 6-row Wordle grid
     for i in range(6):
@@ -97,7 +104,7 @@ def main():
 
     # Check if the player won
     if st.session_state.guesses and st.session_state.guesses[-1] == target_word:
-        st.success(f"Congratulations Girl! You guessed the word correctly {target_word.upper()} (wink wink)")
+        st.success(f"Congratulations! You guessed the word correctly: {target_word.upper()}!")
         st.balloons()
 
     # Allow the user to restart the game
