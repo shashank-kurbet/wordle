@@ -59,6 +59,7 @@ def main():
     st.title("OUR Wordle Game")
 
     # Display instructions
+    st.write("WELCOME MERLYN")
     st.write("Guess the 4-letter word. The game will tell you:")
     st.write("- Green: Letter is correct and in the right position")
     st.write("- Yellow: Letter is correct but in the wrong position")
