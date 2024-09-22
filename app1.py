@@ -111,7 +111,8 @@ def main():
     if st.button("Restart Game"):
         st.session_state.guesses = []
         st.session_state.target_word = random.choice(WORD_LIST)
-        st.experimental_rerun()
+        st.experimental_set_query_params(reload="true")  # Force reload by setting a query parameter
+
 
 if __name__ == "__main__":
     main()
