@@ -2,7 +2,7 @@ import random
 import streamlit as st
 
 # Word list for the game
-WORD_LIST = ["babu"]
+WORD_LIST = ["lover"]
 
 # Choose a random word from the list
 if "target_word" not in st.session_state:
@@ -60,7 +60,7 @@ def main():
 
     # Display instructions
     st.write("Hello Love")
-    st.write("Guess the 4-letter word. The game will tell you:")
+    st.write("Guess the 5-letter word. The game will tell you:")
     st.write("- Green: Letter is correct and in the right position")
     st.write("- Yellow: Letter is correct but in the wrong position")
     st.write("- Gray: Letter is not in the word")
@@ -74,11 +74,11 @@ def main():
 
     if not game_over:
         # Input for guessing
-        guess = st.text_input("Enter your 4-letter guess:", max_chars=4).lower()
+        guess = st.text_input("Enter your 5-letter guess:", max_chars=5).lower()
 
         # Button to submit the guess
         if st.button("Submit Guess"):
-            if len(guess) == 4 and guess.isalpha():
+            if len(guess) == 5 and guess.isalpha():
                 st.session_state.guesses.append(guess)
             else:
                 st.warning("Shi Shi saiba you guessed wrong")
@@ -92,7 +92,7 @@ def main():
             guess = st.session_state.guesses[i]
             result = check_guess(guess, target_word)
         else:
-            guess = "    "  # Empty guess
+            guess = "     "  # Empty guess
             result = [('gray', letter) for letter in guess]
 
         # Display the guess result as a row of letter boxes
