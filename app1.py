@@ -2,7 +2,7 @@ import random
 import streamlit as st
 
 # Word list for the game
-WORD_LIST = ["lover"]
+WORD_LIST = ["fight"]
 
 # Choose a random word from the list
 if "target_word" not in st.session_state:
